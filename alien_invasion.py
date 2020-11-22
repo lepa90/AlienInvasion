@@ -158,6 +158,9 @@ class AlienInvasion:
             self.bullets.empty()
             self._create_flet()
             self.settings.incrase_speed()
+        if collisions:
+            self.stats.score += self.settings.alien_points
+            self.sb.prep_score()
 
 
 if __name__ == '__main__':
