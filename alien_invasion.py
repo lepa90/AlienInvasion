@@ -81,7 +81,7 @@ class AlienInvasion:
 
             self.stats.reset_stats()
             self.stats.game_active = True
-
+            self.sb.prep_score()
             self.aliens.empty()
             self.bullets.empty()
 
@@ -137,7 +137,7 @@ class AlienInvasion:
         for bullet in self.bullets.sprites():
             bullet.draw_bullet()
         self.aliens.draw(self.screen)
-        print(len(self.bullets))
+
         self.sb.show_score()
         if not self.stats.game_active:
             self.play_button.draw_button()
@@ -159,7 +159,8 @@ class AlienInvasion:
             self._create_flet()
             self.settings.incrase_speed()
         if collisions:
-            self.stats.score += self.settings.alien_points
+            for aliens in collisions.values():
+                self.stats.score += self.settings.alien_points * len(aliens)
             self.sb.prep_score()
 
 
