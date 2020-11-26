@@ -47,6 +47,7 @@ class AlienInvasion:
         self.aliens.update()
         if pygame.sprite.spritecollideany(self.ship,self.aliens):
             self.ship_hit()
+        self._check_aliens_botom()
     def _check_aliens_botom(self):
         screen_rect = self.screen.get_rect()
         for alien in self.aliens.sprites():
@@ -162,6 +163,7 @@ class AlienInvasion:
             for aliens in collisions.values():
                 self.stats.score += self.settings.alien_points * len(aliens)
             self.sb.prep_score()
+            self.sb.check_high_score()
 
 
 if __name__ == '__main__':
